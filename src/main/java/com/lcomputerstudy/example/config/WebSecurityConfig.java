@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new AuthTokenFilter();
 	}
 	
-	@Bean
+	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(passwordEncoder());
 	}
