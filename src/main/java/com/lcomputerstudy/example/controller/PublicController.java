@@ -27,11 +27,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lcomputerstudy.example.config.JwtUtils;
+import com.lcomputerstudy.example.domain.Survey;
 import com.lcomputerstudy.example.domain.User;
 import com.lcomputerstudy.example.domain.UserInfo;
 import com.lcomputerstudy.example.request.JoinRequest;
 import com.lcomputerstudy.example.request.LoginRequest;
 import com.lcomputerstudy.example.response.JwtResponse;
+import com.lcomputerstudy.example.service.SurveyService;
 import com.lcomputerstudy.example.service.UserService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -52,6 +54,9 @@ public class PublicController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	SurveyService surveyService;
 	
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Validated @RequestBody LoginRequest loginRequest) {
@@ -117,6 +122,14 @@ public class PublicController {
 																	user.getUsername(),
 																	user.getName(),
 																	roles));
+	}
+	
+	@GetMapping("/surveylist")
+	public ResponseEntity<?> getSurveyList(HttpServletRequest request) {
+
+		List<Survey> list = surveyService.getsurveylist();
+		
+			return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
 }

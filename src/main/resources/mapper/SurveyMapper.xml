@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcomputerstudy.example.mapper.SurveyMapper">
+
+	<select id="getsurveylist" resultType="Survey">
+		SELECT * FROM
+						(select @rownum := @rownum-1 as rownum,
+					ta.*
+		FROM 				
+						survey ta, 
+					 (select @rownum := (select COUNT(*)+1 from survey ta)) tb 
+		ORDER BY 	datetime desc)a
+	</select>
+</mapper>
