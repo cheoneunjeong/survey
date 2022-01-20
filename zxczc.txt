@@ -1,0 +1,10 @@
+v-for questions question
+	<component>
+
+questions = [
+	{title: ''},
+	{title:''}
+]
+
+
+질문추가 눌렀을때 questionList배열에 push해주는 방식으로 수정
