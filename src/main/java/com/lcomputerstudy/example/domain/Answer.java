@@ -2,14 +2,15 @@ package com.lcomputerstudy.example.domain;
 
 public class Answer {
 
-	private String a;
+	private String answer;
 	private int q_num;
 	private int a_num;
-	public String getA() {
-		return a;
+
+	public String getAnswer() {
+		return answer;
 	}
-	public void setA(String a) {
-		this.a = a;
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 	public int getQ_num() {
 		return q_num;

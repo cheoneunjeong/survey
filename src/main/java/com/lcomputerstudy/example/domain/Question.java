@@ -6,9 +6,9 @@ public class Question {
 
 	private int s_num;
 	private int q_num;
-	private String question;
+	private String q;
 	private List<Answer> answers;
-	private String type;
+	private String t;
 	private int rownum;
 	public int getS_num() {
 		return s_num;
@@ -22,11 +22,12 @@ public class Question {
 	public void setQ_num(int q_num) {
 		this.q_num = q_num;
 	}
-	public String getQuestion() {
-		return question;
+
+	public String getQ() {
+		return q;
 	}
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setQ(String q) {
+		this.q = q;
 	}
 	public List<Answer> getAnswers() {
 		return answers;
@@ -34,11 +35,11 @@ public class Question {
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
-	public String getType() {
-		return type;
+	public String getT() {
+		return t;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setT(String t) {
+		this.t = t;
 	}
 	public int getRownum() {
 		return rownum;

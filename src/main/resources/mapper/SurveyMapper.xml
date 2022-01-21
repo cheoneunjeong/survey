@@ -13,4 +13,38 @@
 					 (select @rownum := (select COUNT(*)+1 from survey ta)) tb 
 		ORDER BY 	datetime desc)a
 	</select>
+	
+	<insert id="insertSurvey" parameterType="Survey">
+		INSERT INTO survey(
+					title,
+					disc,
+					writer
+					)
+		VALUES (
+				#{title},
+				#{disc},
+				#{writer}
+				)
+	</insert>
+	<insert id="insertQuestions" parameterType="Question">
+		INSERT INTO question(
+					s_num,
+					t,
+					q
+					)
+		VALUES (
+				(select s_num FROM survey ORDER BY 	 s_num DESC  LIMIT 1),
+				#{t},
+				#{q}
+				)
+	</insert>
+	<insert id="insertAnswers" parameterType="Answer">  
+	        INSERT INTO	answer (
+	        	a,
+	        	q_num
+	      ) VALUES 
+	      		(#{answer},
+	      		(select q_num FROM question ORDER BY  q_num DESC  LIMIT 1)
+	      		)
+	</insert>
 </mapper>

@@ -25,38 +25,13 @@ CREATE TABLE IF NOT EXISTS `answer` (
   PRIMARY KEY (`a_num`),
   KEY `q_num` (`q_num`),
   CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`q_num`) REFERENCES `question` (`q_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 jung.answer:~27 rows (대략적) 내보내기
+-- 테이블 데이터 jung.answer:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
 INSERT INTO `answer` (`a`, `q_num`, `a_num`) VALUES
-	('객1', 61, 67),
-	('ㄱ2', 61, 68),
-	('ㄱ3', 61, 69),
-	('ㄱ4', 61, 70),
-	('ㅊ1', 62, 71),
-	('ㅊ2', 62, 72),
-	('ㅊ3', 62, 73),
-	('ㅊ4', 62, 74),
-	('ㅊ5', 62, 75),
-	('ㄷ1', 63, 76),
-	('ㄷ2', 63, 77),
-	('ㄷ3', 63, 78),
-	('ㄷ4', 63, 79),
-	('ㄷ5', 63, 80),
-	('gg', 65, 81),
-	('ffffff', 67, 82),
-	('sssss', 67, 83),
-	('cccc', 67, 84),
-	('d', 68, 85),
-	('s', 68, 86),
-	('x', 68, 87),
-	('aw', 68, 88),
-	('qweqwe', 69, 89),
-	('sdfdsf', 69, 90),
-	('xvxv', 69, 91),
-	('xzx', 69, 92),
-	('xccc', 69, 93);
+	('ㅎ1', 72, 94),
+	('ㅎ2', 72, 95);
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 
 -- 테이블 jung.board 구조 내보내기
@@ -239,22 +214,13 @@ CREATE TABLE IF NOT EXISTS `question` (
   PRIMARY KEY (`q_num`) USING BTREE,
   KEY `s_num` (`s_num`),
   CONSTRAINT `question_ibfk_1` FOREIGN KEY (`s_num`) REFERENCES `survey` (`s_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 jung.question:~11 rows (대략적) 내보내기
+-- 테이블 데이터 jung.question:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
 INSERT INTO `question` (`s_num`, `q_num`, `t`, `q`, `filename`) VALUES
-	(57, 59, '1', '단답질문', NULL),
-	(57, 60, '2', '장문', NULL),
-	(57, 61, '3', '객관', NULL),
-	(57, 62, '4', '체크', NULL),
-	(57, 63, '5', '드롭', NULL),
-	(58, 64, '1', 'ss', NULL),
-	(58, 65, '3', 'gg', NULL),
-	(59, 66, '1', 'question1', NULL),
-	(59, 67, '3', 'questiuuon2', NULL),
-	(59, 68, '5', 'ggggggg?', NULL),
-	(59, 69, '4', 'question4', NULL);
+	(65, 71, 'ShortAnswer', 'ㅋㅋㅋㅋㅋ', NULL),
+	(65, 72, 'RadioAnswer', 'ㅎㅎㅎ', NULL);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 
 -- 테이블 jung.sanswer 구조 내보내기
@@ -274,48 +240,8 @@ CREATE TABLE IF NOT EXISTS `sanswer` (
   CONSTRAINT `sanswer_ibfk_3` FOREIGN KEY (`s_num`) REFERENCES `survey` (`s_num`)
 ) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 jung.sanswer:~39 rows (대략적) 내보내기
+-- 테이블 데이터 jung.sanswer:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `sanswer` DISABLE KEYS */;
-INSERT INTO `sanswer` (`ans_num`, `sub_num`, `q_num`, `a`, `t`, `s_num`) VALUES
-	(100, 33, 59, '11', '1', 57),
-	(101, 33, 60, '22', '2', 57),
-	(102, 33, 61, 'ㄱ3', '3', 57),
-	(103, 33, 62, 'ㅊ1', '4', 57),
-	(104, 33, 62, 'ㅊ2', '4', 57),
-	(105, 33, 62, 'ㅊ3', '4', 57),
-	(106, 33, 63, 'ㄷ5', '5', 57),
-	(107, 34, 59, 'ㅁㄴ', '1', 57),
-	(108, 34, 60, 'ㅂㅈㄷ', '2', 57),
-	(109, 34, 61, 'ㄱ4', '3', 57),
-	(110, 34, 62, 'ㅊ1', '4', 57),
-	(111, 34, 62, 'ㅊ2', '4', 57),
-	(112, 34, 62, 'ㅊ5', '4', 57),
-	(113, 34, 63, 'ㄷ2', '5', 57),
-	(114, 35, 64, 'ㅋㅋㅋㅋㅋㅋㅋ', '1', 58),
-	(115, 35, 65, 'gg', '3', 58),
-	(116, 36, 66, 'gggg', '1', 59),
-	(117, 36, 67, 'sssss', '3', 59),
-	(118, 36, 68, 'x', '5', 59),
-	(119, 36, 69, 'sdfdsf', '4', 59),
-	(120, 36, 69, 'xvxv', '4', 59),
-	(121, 36, 69, 'xzx', '4', 59),
-	(122, 37, 66, 'zzzz', '1', 59),
-	(123, 37, 67, 'ffffff', '3', 59),
-	(124, 37, 68, 'd', '5', 59),
-	(125, 37, 69, 'qweqwe', '4', 59),
-	(126, 37, 69, 'sdfdsf', '4', 59),
-	(127, 37, 69, 'xvxv', '4', 59),
-	(128, 38, 66, ',,,', '1', 59),
-	(129, 38, 67, 'sssss', '3', 59),
-	(130, 38, 68, 'aw', '5', 59),
-	(131, 38, 69, 'xvxv', '4', 59),
-	(132, 38, 69, 'xccc', '4', 59),
-	(133, 39, 66, 'bbbb', '1', 59),
-	(134, 39, 67, 'cccc', '3', 59),
-	(135, 39, 68, 'x', '5', 59),
-	(136, 39, 69, 'qweqwe', '4', 59),
-	(137, 39, 69, 'sdfdsf', '4', 59),
-	(138, 39, 69, 'xccc', '4', 59);
 /*!40000 ALTER TABLE `sanswer` ENABLE KEYS */;
 
 -- 테이블 jung.spring_session 구조 내보내기
@@ -363,16 +289,8 @@ CREATE TABLE IF NOT EXISTS `submission` (
   CONSTRAINT `submission_ibfk_1` FOREIGN KEY (`s_num`) REFERENCES `survey` (`s_num`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 jung.submission:~7 rows (대략적) 내보내기
+-- 테이블 데이터 jung.submission:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `submission` DISABLE KEYS */;
-INSERT INTO `submission` (`s_num`, `title`, `disc`, `writer`, `datetime`, `sub_num`) VALUES
-	(57, '제목', '설명', 'c', '2021-12-29 02:07:22', 33),
-	(57, '제목', '설명', 'c', '2021-12-29 02:07:35', 34),
-	(58, 'dd', 'ff', 'c', '2021-12-29 02:07:58', 35),
-	(59, 'test', 'disc', 'c', '2021-12-29 09:29:13', 36),
-	(59, 'test', 'disc', 'c', '2021-12-29 09:29:28', 37),
-	(59, 'test', 'disc', 'c', '2021-12-29 09:29:44', 38),
-	(59, 'test', 'disc', 'c', '2021-12-29 09:29:54', 39);
 /*!40000 ALTER TABLE `submission` ENABLE KEYS */;
 
 -- 테이블 jung.survey 구조 내보내기
@@ -383,17 +301,13 @@ CREATE TABLE IF NOT EXISTS `survey` (
   `writer` varchar(50) NOT NULL,
   `datetime` datetime NOT NULL DEFAULT current_timestamp(),
   `hit` int(100) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`s_num`),
-  KEY `writer` (`writer`),
-  CONSTRAINT `survey_ibfk_1` FOREIGN KEY (`writer`) REFERENCES `lc_user1` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb3;
+  PRIMARY KEY (`s_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 jung.survey:~3 rows (대략적) 내보내기
+-- 테이블 데이터 jung.survey:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `survey` DISABLE KEYS */;
 INSERT INTO `survey` (`s_num`, `title`, `disc`, `writer`, `datetime`, `hit`) VALUES
-	(57, '제목', '설명', 'c', '2021-12-28 17:55:08', 0),
-	(58, 'dd', 'ff', 'c', '2021-12-28 22:45:37', 0),
-	(59, 'test', 'disc', 'c', '2021-12-29 09:29:00', 0);
+	(65, '제목ㅇㅇㅇ', '222', 'aa', '2022-01-21 18:22:53', 0);
 /*!40000 ALTER TABLE `survey` ENABLE KEYS */;
 
 -- 테이블 jung.test 구조 내보내기
@@ -535,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `userlist` (
   PRIMARY KEY (`u_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
 
--- 테이블 데이터 jung.userlist:~4 rows (대략적) 내보내기
+-- 테이블 데이터 jung.userlist:~6 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `userlist` DISABLE KEYS */;
 INSERT INTO `userlist` (`u_id`, `u_password`, `u_name`, `u_phone`, `u_datetime`, `u_isAccountNonExpired`, `u_isAccountNonLocked`, `u_isCredentialNonExpired`, `u_isEnabled`, `u_auth`) VALUES
 	('aa', '$2a$10$EDtcH3Ptp1BqdPxSU5TKpe7W3v/rf9NieuJtWr6g.MnCk3nrSLr.G', 'aa', 123123, '2022-01-10 18:23:31', 1, 1, 1, 1, 0),
