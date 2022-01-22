@@ -13,30 +13,48 @@ import com.lcomputerstudy.example.mapper.SurveyMapper;
 @Service
 public class SurveyServiceImpl implements SurveyService {
 
-	@Autowired SurveyMapper surveymaper;
+	@Autowired SurveyMapper surveymapper;
 	
 	@Override
 	public List<Survey> getsurveylist() {
 		// TODO Auto-generated method stub
-		return surveymaper.getsurveylist();
+		return surveymapper.getsurveylist();
 	}
 
 	@Override
 	public void insertSurvey(Survey survey) {
-		surveymaper.insertSurvey(survey);
+		surveymapper.insertSurvey(survey);
 		
 	}
 
 	@Override
 	public void insertQuestions(Question q) {
-		surveymaper.insertQuestions(q);
+		surveymapper.insertQuestions(q);
 		
 	}
 
 	@Override
 	public void insertAnswers(Answer a) {
-		surveymaper.insertAnswers(a);
+		surveymapper.insertAnswers(a);
 		
+	}
+
+	@Override
+	public Survey getSurveyDetail(int s_num) {
+		// TODO Auto-generated method stub
+		return surveymapper.getSurveyDetail(s_num);
+	}
+
+	@Override
+	public List<Question> getQuestionDetail(int s_num) {
+		// TODO Auto-generated method stub
+		return surveymapper.getQuestionDetail(s_num);
+	}
+
+	@Override
+	public List<Answer> getAnswerDetail(int q_num) {
+		// TODO Auto-generated method stub
+		return surveymapper.getAnswerDetail(q_num);
 	}
 
 }

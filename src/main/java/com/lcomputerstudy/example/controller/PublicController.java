@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lcomputerstudy.example.config.JwtUtils;
+import com.lcomputerstudy.example.domain.Answer;
+import com.lcomputerstudy.example.domain.Question;
 import com.lcomputerstudy.example.domain.Survey;
 import com.lcomputerstudy.example.domain.User;
 import com.lcomputerstudy.example.domain.UserInfo;
@@ -130,6 +132,29 @@ public class PublicController {
 		List<Survey> list = surveyService.getsurveylist();
 		
 			return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/survey")
+	public ResponseEntity<?> getSurveyDetail(@Validated int s_num) {
+		
+		Survey survey = surveyService.getSurveyDetail(s_num);
+		List<Question> questions = surveyService.getQuestionDetail(s_num);
+		for(Question q : questions) {
+			int q_num = q.getQ_num();
+			List<Answer> answers = surveyService.getAnswerDetail(q_num);
+			q.setAnswers(answers);
+		}
+		
+		Survey surveyDetail = new Survey();
+		surveyDetail.setS_num(survey.getS_num());
+		surveyDetail.setTitle(survey.getTitle());
+		surveyDetail.setDisc(survey.getDisc());
+		surveyDetail.setWriter(survey.getWriter());
+		surveyDetail.setDatetime(survey.getDatetime());
+		surveyDetail.setHit(survey.getHit());
+		surveyDetail.setQuestions(questions);
+
+		return new ResponseEntity<>(surveyDetail, HttpStatus.OK);
 	}
 
 }

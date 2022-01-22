@@ -25,13 +25,23 @@ CREATE TABLE IF NOT EXISTS `answer` (
   PRIMARY KEY (`a_num`),
   KEY `q_num` (`q_num`),
   CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`q_num`) REFERENCES `question` (`q_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 jung.answer:~0 rows (대략적) 내보내기
+-- 테이블 데이터 jung.answer:~2 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
 INSERT INTO `answer` (`a`, `q_num`, `a_num`) VALUES
 	('ㅎ1', 72, 94),
-	('ㅎ2', 72, 95);
+	('ㅎ2', 72, 95),
+	('드롭1', 75, 96),
+	('드롭2', 75, 97),
+	('드롭3 마지막', 75, 98),
+	('ㅇㅇ1', 76, 99),
+	('ㅇㅇ2', 76, 100),
+	('ㅇㅇ3', 76, 101),
+	('ㅇㅇ4마지막', 76, 102),
+	('체크2', 77, 103),
+	('체크3', 77, 104),
+	('체크4마지막', 77, 105);
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 
 -- 테이블 jung.board 구조 내보내기
@@ -214,13 +224,19 @@ CREATE TABLE IF NOT EXISTS `question` (
   PRIMARY KEY (`q_num`) USING BTREE,
   KEY `s_num` (`s_num`),
   CONSTRAINT `question_ibfk_1` FOREIGN KEY (`s_num`) REFERENCES `survey` (`s_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 jung.question:~0 rows (대략적) 내보내기
+-- 테이블 데이터 jung.question:~2 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
 INSERT INTO `question` (`s_num`, `q_num`, `t`, `q`, `filename`) VALUES
 	(65, 71, 'ShortAnswer', 'ㅋㅋㅋㅋㅋ', NULL),
-	(65, 72, 'RadioAnswer', 'ㅎㅎㅎ', NULL);
+	(65, 72, 'RadioAnswer', 'ㅎㅎㅎ', NULL),
+	(66, 73, 'ShortQ', '1번단답', NULL),
+	(66, 74, 'LongQ', '장문형질문', NULL),
+	(66, 75, 'DropQ', '드롭질문', NULL),
+	(66, 76, 'RadioQ', '객관식질문', NULL),
+	(66, 77, 'CheckQ', '체크박스', NULL),
+	(67, 78, 'ShortAnswer', '11', NULL);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 
 -- 테이블 jung.sanswer 구조 내보내기
@@ -302,12 +318,14 @@ CREATE TABLE IF NOT EXISTS `survey` (
   `datetime` datetime NOT NULL DEFAULT current_timestamp(),
   `hit` int(100) NOT NULL DEFAULT 0,
   PRIMARY KEY (`s_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 jung.survey:~0 rows (대략적) 내보내기
+-- 테이블 데이터 jung.survey:~1 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `survey` DISABLE KEYS */;
 INSERT INTO `survey` (`s_num`, `title`, `disc`, `writer`, `datetime`, `hit`) VALUES
-	(65, '제목ㅇㅇㅇ', '222', 'aa', '2022-01-21 18:22:53', 0);
+	(65, '제목ㅇㅇㅇ', '222', 'aa', '2022-01-21 18:22:53', 0),
+	(66, '설문조사', '부가설명부분ㅇㅇ', 'zz', '2022-01-22 14:24:39', 0),
+	(67, 'ㅇㅇ', 'ㄴㄴ', 'zz', '2022-01-22 14:26:29', 0);
 /*!40000 ALTER TABLE `survey` ENABLE KEYS */;
 
 -- 테이블 jung.test 구조 내보내기

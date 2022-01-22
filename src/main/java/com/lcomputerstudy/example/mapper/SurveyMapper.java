@@ -19,4 +19,10 @@ public interface SurveyMapper {
 
 	void insertAnswers(Answer a);
 
+	Survey getSurveyDetail(int s_num);
+
+	List<Question> getQuestionDetail(int s_num);
+
+	List<Answer> getAnswerDetail(int q_num);
+
 }

@@ -15,4 +15,10 @@ public interface SurveyService {
 	public void insertQuestions(Question q);
 
 	public void insertAnswers(Answer a);
+
+	public Survey getSurveyDetail(int s_num);
+
+	public List<Question> getQuestionDetail(int s_num);
+
+	public List<Answer> getAnswerDetail(int q_num);
 }
