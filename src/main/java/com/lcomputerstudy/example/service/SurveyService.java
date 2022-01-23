@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.lcomputerstudy.example.domain.Answer;
 import com.lcomputerstudy.example.domain.Question;
+import com.lcomputerstudy.example.domain.Response;
+import com.lcomputerstudy.example.domain.ResultAnswer;
+import com.lcomputerstudy.example.domain.Submission;
 import com.lcomputerstudy.example.domain.Survey;
 
 public interface SurveyService {
@@ -21,4 +24,16 @@ public interface SurveyService {
 	public List<Question> getQuestionDetail(int s_num);
 
 	public List<Answer> getAnswerDetail(int q_num);
+
+	public void insertSubmission(Submission submission);
+
+	public void insertResponse(Response r);
+
+	public void insertReAnswer(String a, int s_num, int q_num);
+
+	public List<Question> getResultQuestion(int s_num);
+
+	public List<String> getResultAnswers(int s_num, int q_num);
+
+	public List<Integer> getResultAnswersCount(int s_num, int q_num);
 }

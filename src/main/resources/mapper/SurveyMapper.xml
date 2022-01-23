@@ -57,4 +57,49 @@
 	<select id="getAnswerDetail" parameterType="Integer" resultType="Answer">
 		SELECT a as answer, q_num, a_num FROM answer WHERE q_num = #{q_num}
 	</select>
+	
+	<insert id="insertSubmission" parameterType="Submission">
+		INSERT INTO vue_submission(
+					s_num
+		) VALUES (
+				#{s_num}
+				)
+	</insert>
+	<insert id="insertResponse" parameterType="Response">
+		INSERT INTO vue_response(
+					sub_num,
+					q_num,
+					t
+		) VALUES (
+				(select sub_num FROM vue_submission ORDER BY 	 sub_num DESC  LIMIT 1),
+				#{q_num},
+				#{t}
+				)
+	</insert>
+	<insert id="insertReAnswer" parameterType="map">
+		INSERT INTO vue_reanswers(
+					s_num,
+					q_num,
+					r_num,
+					a
+		) VALUES (
+				#{s_num},
+				#{q_num},
+				(select r_num FROM vue_response ORDER BY 	 r_num DESC  LIMIT 1),
+				#{a}
+				)
+	</insert>
+	
+	<select id="getResultQuestion" parameterType="Integer" resultType="Question">
+		SELECT q_num, t, q  FROM question WHERE s_num = #{s_num}
+	</select>
+	
+	<select id="getResultAnswers" parameterType="map" resultType="String">
+		SELECT a FROM vue_reanswers WHERE s_num = #{s_num} AND q_num = #{q_num}  GROUP BY a
+	</select>
+	<select id="getResultAnswersCount" parameterType="map" resultType="Integer">
+		SELECT COUNT(a) AS aCount FROM vue_reanswers WHERE s_num = #{s_num} AND q_num = #{q_num}  GROUP BY a
+	</select>
+
+
 </mapper>

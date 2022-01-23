@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lcomputerstudy.example.config.JwtUtils;
 import com.lcomputerstudy.example.domain.Answer;
 import com.lcomputerstudy.example.domain.Question;
+import com.lcomputerstudy.example.domain.Response;
+import com.lcomputerstudy.example.domain.Submission;
 import com.lcomputerstudy.example.domain.Survey;
 import com.lcomputerstudy.example.request.SurveyRequest;
 import com.lcomputerstudy.example.service.SurveyService;

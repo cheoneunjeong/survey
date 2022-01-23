@@ -8,6 +8,8 @@ public class Question {
 	private int q_num;
 	private String q;
 	private List<Answer> answers;
+	private List<String> resultAnswers;
+	private List<Integer> resultCount;
 	private String t;
 	private int rownum;
 	public int getS_num() {
@@ -47,6 +49,17 @@ public class Question {
 	public void setRownum(int rownum) {
 		this.rownum = rownum;
 	}
-	
+	public List<String> getResultAnswers() {
+		return resultAnswers;
+	}
+	public void setResultAnswers(List<String> resultAnswers) {
+		this.resultAnswers = resultAnswers;
+	}
+	public List<Integer> getResultCount() {
+		return resultCount;
+	}
+	public void setResultCount(List<Integer> resultCount) {
+		this.resultCount = resultCount;
+	}
 	
 }

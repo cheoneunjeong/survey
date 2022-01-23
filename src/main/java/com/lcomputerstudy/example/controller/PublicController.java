@@ -29,12 +29,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lcomputerstudy.example.config.JwtUtils;
 import com.lcomputerstudy.example.domain.Answer;
 import com.lcomputerstudy.example.domain.Question;
+import com.lcomputerstudy.example.domain.Response;
+import com.lcomputerstudy.example.domain.ResultAnswer;
+import com.lcomputerstudy.example.domain.Submission;
 import com.lcomputerstudy.example.domain.Survey;
 import com.lcomputerstudy.example.domain.User;
 import com.lcomputerstudy.example.domain.UserInfo;
 import com.lcomputerstudy.example.request.JoinRequest;
 import com.lcomputerstudy.example.request.LoginRequest;
 import com.lcomputerstudy.example.response.JwtResponse;
+import com.lcomputerstudy.example.response.StatisticsResponse;
 import com.lcomputerstudy.example.service.SurveyService;
 import com.lcomputerstudy.example.service.UserService;
 
@@ -155,6 +159,43 @@ public class PublicController {
 		surveyDetail.setQuestions(questions);
 
 		return new ResponseEntity<>(surveyDetail, HttpStatus.OK);
+	}
+	
+	@PostMapping("/survey-answers")
+	public ResponseEntity<?> submitSurveyAnswers(@Validated @RequestBody Submission submission ) {
+		
+
+		surveyService.insertSubmission(submission);
+		for(Response r : submission.getQuestions()) {
+			surveyService.insertResponse(r);
+			for(String a: r.getAnswers()) {
+				if(a != null)
+					surveyService.insertReAnswer(a, submission.getS_num(), r.getQ_num());
+			}
+		}
+		
+			
+		return new ResponseEntity<>("ok", HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/survey-answers")
+	public ResponseEntity<?> getSurveyAnswers(@Validated int s_num ) {
+		
+
+		StatisticsResponse result = new StatisticsResponse();
+		result.setS_num(s_num);
+		List<Question> q_ = surveyService.getResultQuestion(s_num);
+		for(Question q : q_) {
+			List<String> a = surveyService.getResultAnswers(s_num, q.getQ_num());
+			List<Integer> aCount = surveyService.getResultAnswersCount(s_num, q.getQ_num());
+			q.setResultAnswers(a);
+			q.setResultCount(aCount);
+		}
+		result.setQuestions(q_);
+			
+		return new ResponseEntity<>(result, HttpStatus.OK);
+		
 	}
 
 }
