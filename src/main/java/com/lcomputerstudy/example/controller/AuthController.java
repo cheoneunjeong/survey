@@ -96,20 +96,8 @@ public class AuthController {
 		
 		Survey s = surveyService.getSurveyDetail(s_num);
 		if(s.getWriter().equals(username) || request.isUserInRole("ROLE_ADMIN")) {
-			List<Integer> q_num = surveyService.getQ_num(s_num); 
-			for(int q : q_num) {
-				surveyService.deleteAnswers(q);
-			}
-			surveyService.deleteReAnswers(s_num);
-			
-			List<Integer> sub_num = surveyService.getSub_num(s_num);
-			for(int s_ : sub_num) {
-				surveyService.deleteResponse(s_);
-			}
-			surveyService.deleteSubmission(s_num);	
-			surveyService.deleteQuestions(s_num);
+
 			surveyService.deleteSurvey(s_num);
-			
 			
 			List<Survey> list = surveyService.getsurveylist();
 			
