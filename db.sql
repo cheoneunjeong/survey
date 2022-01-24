@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 호스트:                          127.0.0.1
--- 서버 버전:                        10.6.4-MariaDB - mariadb.org binary distribution
+-- 서버 버전:                        10.5.8-MariaDB - mariadb.org binary distribution
 -- 서버 OS:                        Win64
--- HeidiSQL 버전:                  11.3.0.6295
+-- HeidiSQL 버전:                  11.0.0.5919
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -10,7 +10,6 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- jung 데이터베이스 구조 내보내기
@@ -25,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
   PRIMARY KEY (`a_num`),
   KEY `q_num` (`q_num`),
   CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`q_num`) REFERENCES `question` (`q_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.answer:~22 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
@@ -41,17 +40,11 @@ INSERT INTO `answer` (`a`, `q_num`, `a_num`) VALUES
 	('ㄷ3', 91, 134),
 	('ㄷ4', 91, 135),
 	('ㄷ5', 91, 136),
-	('1번ㅇㄹㄹ', 94, 137),
-	('ㅇㅀㅈㅈㅈ', 94, 138),
-	('ㅇㅇㅇㅇ', 94, 139),
-	('ㅂㅂㅂ', 95, 140),
-	('ㅈㅈㅈ', 95, 141),
-	('ㅇㅇㅇ', 95, 142),
-	('ㄴㄴㄴ', 95, 143),
-	('ㅁㅁㅁ', 96, 144),
-	('ㄴㄴㄴ', 96, 145),
-	('ㅇㅇㅇ', 96, 146),
-	('ㄹㄹㄹ', 96, 147);
+	('1', 98, 148),
+	('2', 98, 149),
+	('aaa', 99, 150),
+	('sss', 99, 151),
+	('ddd', 99, 152);
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 
 -- 테이블 jung.board 구조 내보내기
@@ -65,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `board` (
   PRIMARY KEY (`b_idx`),
   KEY `u_idx` (`u_idx`),
   CONSTRAINT `board_ibfk_1` FOREIGN KEY (`u_idx`) REFERENCES `user` (`u_idx`) ON DELETE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.board:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `board` DISABLE KEYS */;
@@ -88,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `boardlist` (
   PRIMARY KEY (`b_id`) USING BTREE,
   KEY `b_writer` (`b_writer`) USING BTREE,
   CONSTRAINT `boardlist_ibfk_1` FOREIGN KEY (`b_writer`) REFERENCES `lc_user1` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- 테이블 데이터 jung.boardlist:~9 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `boardlist` DISABLE KEYS */;
@@ -109,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `lc_auth` (
   `u_id` varchar(50) NOT NULL,
   `u_auth` varchar(50) NOT NULL,
   PRIMARY KEY (`u_id`,`u_auth`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.lc_auth:~7 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `lc_auth` DISABLE KEYS */;
@@ -138,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `lc_board` (
   PRIMARY KEY (`b_id`),
   KEY `b_writer` (`b_writer`),
   CONSTRAINT `lc_board_ibfk_1` FOREIGN KEY (`b_writer`) REFERENCES `lc_user1` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.lc_board:~9 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `lc_board` DISABLE KEYS */;
@@ -169,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `lc_reply` (
   KEY `bId` (`bId`),
   CONSTRAINT `lc_reply_ibfk_1` FOREIGN KEY (`bId`) REFERENCES `lc_board` (`b_id`),
   CONSTRAINT `lc_reply_ibfk_2` FOREIGN KEY (`writer`) REFERENCES `lc_user1` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.lc_reply:~6 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `lc_reply` DISABLE KEYS */;
@@ -189,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `lc_user` (
   `u_name` varchar(50) DEFAULT NULL,
   `u_age` int(11) DEFAULT NULL,
   `u_datetime` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.lc_user:~3 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `lc_user` DISABLE KEYS */;
@@ -211,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `lc_user1` (
   `u_isEnabled` tinyint(10) DEFAULT NULL,
   `u_auth` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.lc_user1:~6 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `lc_user1` DISABLE KEYS */;
@@ -234,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   PRIMARY KEY (`q_num`) USING BTREE,
   KEY `s_num` (`s_num`),
   CONSTRAINT `question_ibfk_1` FOREIGN KEY (`s_num`) REFERENCES `survey` (`s_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.question:~10 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
@@ -244,11 +237,9 @@ INSERT INTO `question` (`s_num`, `q_num`, `t`, `q`, `filename`) VALUES
 	(70, 89, 'RadioQ', '3번 객관식', NULL),
 	(70, 90, 'CheckQ', '4번 체크', NULL),
 	(70, 91, 'DropQ', '드롭다운마지막', NULL),
-	(71, 92, 'ShortQ', '단답질문', NULL),
-	(71, 93, 'LongQ', '장문답변', NULL),
-	(71, 94, 'RadioQ', '하나만 골라주세요', NULL),
-	(71, 95, 'CheckQ', '중복해도괜찮아요', NULL),
-	(71, 96, 'DropQ', '선택해주세요', NULL);
+	(72, 97, 'ShortQ', 'qq', NULL),
+	(72, 98, 'RadioQ', 'ww', NULL),
+	(72, 99, 'DropQ', 'qwe', NULL);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 
 -- 테이블 jung.sanswer 구조 내보내기
@@ -266,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `sanswer` (
   CONSTRAINT `sanswer_ibfk_1` FOREIGN KEY (`sub_num`) REFERENCES `submission` (`sub_num`),
   CONSTRAINT `sanswer_ibfk_2` FOREIGN KEY (`q_num`) REFERENCES `question` (`q_num`),
   CONSTRAINT `sanswer_ibfk_3` FOREIGN KEY (`s_num`) REFERENCES `survey` (`s_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.sanswer:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `sanswer` DISABLE KEYS */;
@@ -285,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `spring_session` (
   UNIQUE KEY `SPRING_SESSION_IX1` (`SESSION_ID`),
   KEY `SPRING_SESSION_IX2` (`EXPIRY_TIME`),
   KEY `SPRING_SESSION_IX3` (`PRINCIPAL_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.spring_session:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `spring_session` DISABLE KEYS */;
@@ -298,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `spring_session_attributes` (
   `ATTRIBUTE_BYTES` blob NOT NULL,
   PRIMARY KEY (`SESSION_PRIMARY_ID`,`ATTRIBUTE_NAME`),
   CONSTRAINT `SPRING_SESSION_ATTRIBUTES_FK` FOREIGN KEY (`SESSION_PRIMARY_ID`) REFERENCES `spring_session` (`PRIMARY_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.spring_session_attributes:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `spring_session_attributes` DISABLE KEYS */;
@@ -315,7 +306,7 @@ CREATE TABLE IF NOT EXISTS `submission` (
   PRIMARY KEY (`sub_num`),
   KEY `s_num` (`s_num`),
   CONSTRAINT `submission_ibfk_1` FOREIGN KEY (`s_num`) REFERENCES `survey` (`s_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.submission:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `submission` DISABLE KEYS */;
@@ -330,13 +321,13 @@ CREATE TABLE IF NOT EXISTS `survey` (
   `datetime` datetime NOT NULL DEFAULT current_timestamp(),
   `hit` int(100) NOT NULL DEFAULT 0,
   PRIMARY KEY (`s_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 jung.survey:~0 rows (대략적) 내보내기
+-- 테이블 데이터 jung.survey:~2 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `survey` DISABLE KEYS */;
 INSERT INTO `survey` (`s_num`, `title`, `disc`, `writer`, `datetime`, `hit`) VALUES
 	(70, '제목입니당', '설명입니다', 'aa', '2022-01-22 17:13:54', 0),
-	(71, '설문지', '그냥 설문ㅁ지', 'aa', '2022-01-23 00:15:32', 0);
+	(72, 'test', 'test', 'zz', '2022-01-24 10:02:51', 0);
 /*!40000 ALTER TABLE `survey` ENABLE KEYS */;
 
 -- 테이블 jung.test 구조 내보내기
@@ -354,7 +345,7 @@ CREATE TABLE IF NOT EXISTS `test` (
   PRIMARY KEY (`b_idx`),
   KEY `u_idx` (`u_idx`),
   CONSTRAINT `test_ibfk_1` FOREIGN KEY (`u_idx`) REFERENCES `user` (`u_idx`)
-) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.test:~26 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
@@ -402,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `test_reply` (
   KEY `b_idx` (`b_idx`),
   CONSTRAINT `test_reply_ibfk_1` FOREIGN KEY (`u_idx`) REFERENCES `user` (`u_idx`),
   CONSTRAINT `test_reply_ibfk_2` FOREIGN KEY (`b_idx`) REFERENCES `test` (`b_idx`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.test_reply:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `test_reply` DISABLE KEYS */;
@@ -419,7 +410,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `manager` int(11) NOT NULL DEFAULT 0,
   `u_datetime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`u_idx`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.user:~19 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
@@ -450,9 +441,9 @@ CREATE TABLE IF NOT EXISTS `userauth` (
   `u_id` varchar(50) NOT NULL,
   `u_auth` varchar(50) NOT NULL,
   PRIMARY KEY (`u_id`,`u_auth`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- 테이블 데이터 jung.userauth:~5 rows (대략적) 내보내기
+-- 테이블 데이터 jung.userauth:~6 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `userauth` DISABLE KEYS */;
 INSERT INTO `userauth` (`u_id`, `u_auth`) VALUES
 	('aa', 'ROLE_ADMIN'),
@@ -476,7 +467,7 @@ CREATE TABLE IF NOT EXISTS `userlist` (
   `u_isEnabled` tinyint(10) DEFAULT NULL,
   `u_auth` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`u_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- 테이블 데이터 jung.userlist:~6 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `userlist` DISABLE KEYS */;
@@ -504,7 +495,7 @@ CREATE TABLE IF NOT EXISTS `vue_board` (
   PRIMARY KEY (`b_id`),
   KEY `writer` (`writer`),
   CONSTRAINT `vue_board_ibfk_1` FOREIGN KEY (`writer`) REFERENCES `userlist` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.vue_board:~5 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `vue_board` DISABLE KEYS */;
@@ -531,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `vue_comment` (
   KEY `writer` (`writer`),
   CONSTRAINT `vue_comment_ibfk_1` FOREIGN KEY (`bid`) REFERENCES `vue_board` (`b_id`),
   CONSTRAINT `vue_comment_ibfk_2` FOREIGN KEY (`writer`) REFERENCES `userlist` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 jung.vue_comment:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `vue_comment` DISABLE KEYS */;
@@ -549,9 +540,9 @@ CREATE TABLE IF NOT EXISTS `vue_reanswers` (
   KEY `s_num` (`s_num`),
   CONSTRAINT `vue_reanswers_ibfk_1` FOREIGN KEY (`r_num`) REFERENCES `vue_response` (`r_num`),
   CONSTRAINT `vue_reanswers_ibfk_2` FOREIGN KEY (`s_num`) REFERENCES `survey` (`s_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 jung.vue_reanswers:~19 rows (대략적) 내보내기
+-- 테이블 데이터 jung.vue_reanswers:~39 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `vue_reanswers` DISABLE KEYS */;
 INSERT INTO `vue_reanswers` (`rea_num`, `r_num`, `a`, `s_num`, `q_num`) VALUES
 	(34, 30, '1', 70, 87),
@@ -573,13 +564,6 @@ INSERT INTO `vue_reanswers` (`rea_num`, `r_num`, `a`, `s_num`, `q_num`) VALUES
 	(50, 43, 'ㅊ2', 70, 90),
 	(51, 43, 'ㅊ3', 70, 90),
 	(52, 44, 'ㄷ5', 70, 91),
-	(53, 45, 'ㅇㅇ', 71, 92),
-	(54, 46, 'ㄴㄴㄴ', 71, 93),
-	(55, 47, '1번ㅇㄹㄹ', 71, 94),
-	(56, 48, 'ㅂㅂㅂ', 71, 95),
-	(57, 48, 'ㅈㅈㅈ', 71, 95),
-	(58, 48, 'ㄴㄴㄴ', 71, 95),
-	(59, 49, 'ㅇㅇㅇ', 71, 96),
 	(60, 50, 'test', 70, 87),
 	(61, 51, 'testets', 70, 88),
 	(62, 52, 'ㄱ2', 70, 89),
@@ -592,7 +576,19 @@ INSERT INTO `vue_reanswers` (`rea_num`, `r_num`, `a`, `s_num`, `q_num`) VALUES
 	(69, 58, 'ㅊ1', 70, 90),
 	(70, 58, 'ㅊ2', 70, 90),
 	(71, 58, 'ㅊ3', 70, 90),
-	(72, 59, 'ㄷ3', 70, 91);
+	(72, 59, 'ㄷ3', 70, 91),
+	(73, 60, 'zzz', 72, 97),
+	(74, 61, '1', 72, 98),
+	(75, 62, 'sss', 72, 99),
+	(76, 63, 'nnn', 72, 97),
+	(77, 64, '2', 72, 98),
+	(78, 65, 'ddd', 72, 99),
+	(79, 66, 'fgghfdg', 72, 97),
+	(80, 67, '2', 72, 98),
+	(81, 68, 'sss', 72, 99),
+	(82, 69, 'ereer', 72, 97),
+	(83, 70, '2', 72, 98),
+	(84, 71, 'ddd', 72, 99);
 /*!40000 ALTER TABLE `vue_reanswers` ENABLE KEYS */;
 
 -- 테이블 jung.vue_response 구조 내보내기
@@ -604,9 +600,9 @@ CREATE TABLE IF NOT EXISTS `vue_response` (
   PRIMARY KEY (`r_num`),
   KEY `sub_num` (`sub_num`),
   CONSTRAINT `vue_response_ibfk_1` FOREIGN KEY (`sub_num`) REFERENCES `vue_submission` (`sub_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 jung.vue_response:~15 rows (대략적) 내보내기
+-- 테이블 데이터 jung.vue_response:~30 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `vue_response` DISABLE KEYS */;
 INSERT INTO `vue_response` (`r_num`, `sub_num`, `q_num`, `t`) VALUES
 	(30, 11, 87, 'ShortQ'),
@@ -624,11 +620,6 @@ INSERT INTO `vue_response` (`r_num`, `sub_num`, `q_num`, `t`) VALUES
 	(42, 13, 89, 'RadioQ'),
 	(43, 13, 90, 'CheckQ'),
 	(44, 13, 91, 'DropQ'),
-	(45, 14, 92, 'ShortQ'),
-	(46, 14, 93, 'LongQ'),
-	(47, 14, 94, 'RadioQ'),
-	(48, 14, 95, 'CheckQ'),
-	(49, 14, 96, 'DropQ'),
 	(50, 15, 87, 'ShortQ'),
 	(51, 15, 88, 'LongQ'),
 	(52, 15, 89, 'RadioQ'),
@@ -638,7 +629,19 @@ INSERT INTO `vue_response` (`r_num`, `sub_num`, `q_num`, `t`) VALUES
 	(56, 16, 88, 'LongQ'),
 	(57, 16, 89, 'RadioQ'),
 	(58, 16, 90, 'CheckQ'),
-	(59, 16, 91, 'DropQ');
+	(59, 16, 91, 'DropQ'),
+	(60, 17, 97, 'ShortQ'),
+	(61, 17, 98, 'RadioQ'),
+	(62, 17, 99, 'DropQ'),
+	(63, 18, 97, 'ShortQ'),
+	(64, 18, 98, 'RadioQ'),
+	(65, 18, 99, 'DropQ'),
+	(66, 19, 97, 'ShortQ'),
+	(67, 19, 98, 'RadioQ'),
+	(68, 19, 99, 'DropQ'),
+	(69, 20, 97, 'ShortQ'),
+	(70, 20, 98, 'RadioQ'),
+	(71, 20, 99, 'DropQ');
 /*!40000 ALTER TABLE `vue_response` ENABLE KEYS */;
 
 -- 테이블 jung.vue_submission 구조 내보내기
@@ -646,20 +649,22 @@ CREATE TABLE IF NOT EXISTS `vue_submission` (
   `sub_num` int(11) NOT NULL AUTO_INCREMENT,
   `s_num` int(11) DEFAULT NULL,
   PRIMARY KEY (`sub_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 jung.vue_submission:~3 rows (대략적) 내보내기
+-- 테이블 데이터 jung.vue_submission:~6 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `vue_submission` DISABLE KEYS */;
 INSERT INTO `vue_submission` (`sub_num`, `s_num`) VALUES
 	(11, 70),
 	(12, 70),
 	(13, 70),
-	(14, 71),
 	(15, 70),
-	(16, 70);
+	(16, 70),
+	(17, 72),
+	(18, 72),
+	(19, 72),
+	(20, 72);
 /*!40000 ALTER TABLE `vue_submission` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
