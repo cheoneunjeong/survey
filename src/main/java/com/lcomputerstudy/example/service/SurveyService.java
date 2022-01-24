@@ -36,4 +36,20 @@ public interface SurveyService {
 	public List<String> getResultAnswers(int s_num, int q_num);
 
 	public List<Integer> getResultAnswersCount(int s_num, int q_num);
+
+	public void deleteSurvey(int s_num);
+
+	public List<Integer> getQ_num(int s_num);
+
+	public void deleteAnswers(int q);
+
+	public void deleteQuestions(int s_num);
+
+	public void deleteReAnswers(int s_num);
+
+	public void deleteSubmission(int s_num);
+
+	public List<Integer> getSub_num(int s_num);
+
+	public void deleteResponse(int s_);
 }

@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,5 +83,42 @@ public class AuthController {
 		
 	}
 	
+	@DeleteMapping("/survey")
+	public ResponseEntity<?> deleteSurvey(HttpServletRequest request, @Validated int s_num ) {
+		
+		String token = new String();
+		token = request.getHeader("Authorization");
+		
+		if(StringUtils.hasText(token) && token.startsWith("Bearer ")) {
+			token = token.substring(7, token.length());
+		}
+		String username = jwtUtils.getUserEmailFromToken(token);
+		
+		Survey s = surveyService.getSurveyDetail(s_num);
+		if(s.getWriter().equals(username) || request.isUserInRole("ROLE_ADMIN")) {
+			List<Integer> q_num = surveyService.getQ_num(s_num); 
+			for(int q : q_num) {
+				surveyService.deleteAnswers(q);
+			}
+			surveyService.deleteReAnswers(s_num);
+			
+			List<Integer> sub_num = surveyService.getSub_num(s_num);
+			for(int s_ : sub_num) {
+				surveyService.deleteResponse(s_);
+			}
+			surveyService.deleteSubmission(s_num);	
+			surveyService.deleteQuestions(s_num);
+			surveyService.deleteSurvey(s_num);
+			
+			
+			List<Survey> list = surveyService.getsurveylist();
+			
+			return new ResponseEntity<>(list, HttpStatus.OK);
+			
+		}
+		
+		else return new ResponseEntity<>("fail", HttpStatus.FORBIDDEN);
+	
+	}
 	
 }

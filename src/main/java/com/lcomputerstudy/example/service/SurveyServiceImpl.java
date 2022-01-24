@@ -96,4 +96,52 @@ public class SurveyServiceImpl implements SurveyService {
 		return surveymapper.getResultAnswersCount(s_num, q_num);
 	}
 
+	@Override
+	public void deleteSurvey(int s_num) {
+		surveymapper.deleteSurvey(s_num);
+		
+	}
+
+	@Override
+	public List<Integer> getQ_num(int s_num) {
+		// TODO Auto-generated method stub
+		return surveymapper.getQ_num(s_num);
+	}
+
+	@Override
+	public void deleteAnswers(int q) {
+		surveymapper.deleteAnswers(q);
+		
+	}
+
+	@Override
+	public void deleteQuestions(int s_num) {
+		surveymapper.deleteQuestions(s_num);
+		
+	}
+
+	@Override
+	public void deleteReAnswers(int s_num) {
+		surveymapper.deleteReAnswers(s_num);
+		
+	}
+
+	@Override
+	public void deleteSubmission(int s_num) {
+		surveymapper.deleteSubmission(s_num);
+		
+	}
+
+	@Override
+	public List<Integer> getSub_num(int s_num) {
+		// TODO Auto-generated method stub
+		return surveymapper.getSub_num(s_num);
+	}
+
+	@Override
+	public void deleteResponse(int s_) {
+		surveymapper.deleteResponse(s_);
+		
+	}
+
 }

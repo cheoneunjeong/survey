@@ -41,4 +41,20 @@ public interface SurveyMapper {
 
 	List<Integer> getResultAnswersCount(@Param("s_num") int s_num, @Param("q_num") int q_num);
 
+	void deleteSurvey(int s_num);
+
+	List<Integer> getQ_num(int s_num);
+
+	void deleteAnswers(int q);
+
+	void deleteQuestions(int s_num);
+
+	void deleteReAnswers(int s_num);
+
+	void deleteSubmission(int s_num);
+
+	List<Integer> getSub_num(int s_num);
+
+	void deleteResponse(int s_);
+
 }

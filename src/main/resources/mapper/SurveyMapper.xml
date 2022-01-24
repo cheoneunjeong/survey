@@ -100,6 +100,36 @@
 	<select id="getResultAnswersCount" parameterType="map" resultType="Integer">
 		SELECT COUNT(a) AS aCount FROM vue_reanswers WHERE s_num = #{s_num} AND q_num = #{q_num}  GROUP BY a
 	</select>
+	
+	<select id="getQ_num" parameterType="Integer" resultType="Integer">
+		SELECT q_num FROM question WHERE s_num = #{s_num}
+	</select>
+	
+	<select id="getSub_num" parameterType="Integer" resultType="Integer">
+		SELECT sub_num FROM vue_submission WHERE s_num = #{s_num}
+	</select>
+	
+	<delete id="deleteSurvey" parameterType="Integer">
+		DELETE FROM survey WHERE s_num = #{s_num}
+	</delete>
+	
+	<delete id="deleteAnswers" parameterType="Integer">
+		DELETE FROM answer WHERE q_num = #{q}
+	</delete>
+	
+	<delete id="deleteQuestions" parameterType="Integer">
+		DELETE FROM question WHERE s_num = #{s_num}
+	</delete>
 
+	<delete id="deleteReAnswers" parameterType="Integer">
+		DELETE FROM vue_reanswers WHERE s_num = #{s_num}
+	</delete>
 
+	<delete id="deleteSubmission" parameterType="Integer">
+		DELETE FROM vue_submission WHERE s_num = #{s_num}
+	</delete>
+
+	<delete id="deleteResponse" parameterType="Integer">
+		DELETE FROM vue_response WHERE sub_num = #{s_}
+	</delete>
 </mapper>
